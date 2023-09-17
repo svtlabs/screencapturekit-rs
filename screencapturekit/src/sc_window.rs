@@ -5,7 +5,7 @@ use screencapturekit_sys::{
 
 use crate::sc_running_application::SCRunningApplication;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct SCWindow {
     pub(crate) _unsafe_ref: ShareId<UnsafeSCWindow>,
     pub rect: CGRect,
