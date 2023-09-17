@@ -1,12 +1,14 @@
-use screencapturekit_sys::{os_types::rc::ShareId, shareable_content::UnsafeSCWindow};
+use screencapturekit_sys::{
+    os_types::{geometry::CGRect, rc::ShareId},
+    shareable_content::UnsafeSCWindow,
+};
 
 use crate::sc_running_application::SCRunningApplication;
 
 #[derive(Debug)]
 pub struct SCWindow {
     pub(crate) _unsafe_ref: ShareId<UnsafeSCWindow>,
-    pub width: u32,
-    pub height: u32,
+    pub rect: CGRect,
     pub title: Option<String>,
     pub owning_application: Option<SCRunningApplication>,
     pub window_id: u32,
@@ -20,8 +22,7 @@ impl From<ShareId<UnsafeSCWindow>> for SCWindow {
         let frame = unsafe_ref.get_frame();
         SCWindow {
             title: unsafe_ref.get_title(),
-            width: frame.size.width as u32,
-            height: frame.size.height as u32,
+            rect: frame,
             window_id: unsafe_ref.get_window_id(),
             window_layer: unsafe_ref.get_window_layer(),
             is_active: unsafe_ref.get_is_active() == 1,
