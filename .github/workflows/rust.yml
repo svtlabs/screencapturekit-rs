@@ -15,7 +15,9 @@ jobs:
     steps:
       # Fix for issue: https://github.com/actions/runner-images/issues/8782
       - name: Echo pid
-        run: ps aux | grep `ps -o ppid= -p $$`
+        run: ps a | grep `ps -o ppid= -p $$`
+      - name: Echo pid
+        run: ps aux $$`
       - name: Reset TCC Screencapture
         run: sudo tccutil reset ScreenCapture
       - name: Grant write system permission to TCC
