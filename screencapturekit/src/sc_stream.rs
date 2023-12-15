@@ -81,14 +81,14 @@ mod tests {
     impl StreamOutput for ScreenOutput {
         fn did_output_sample_buffer(&self, sample: CMSampleBuffer, of_type: SCStreamOutputType) {
             match of_type {
-                SCStreamOutputType::Screen => {self.video_tx.send(sample).ok();},
+                SCStreamOutputType::Screen => {
+                    self.video_tx.send(sample).ok();
+                }
                 SCStreamOutputType::Audio => {}
             }
-            
         }
     }
     #[test]
-    #[cfg_attr(feature = "ci", ignore)]
     fn test_screen_output() {
         let mut content = SCShareableContent::current();
         let display = content.displays.pop().unwrap();
@@ -107,7 +107,6 @@ mod tests {
     }
 
     #[test]
-    #[cfg_attr(feature = "ci", ignore)]
     fn test_audio_output() {
         let mut content = SCShareableContent::current();
         let display = content.displays.pop().unwrap();

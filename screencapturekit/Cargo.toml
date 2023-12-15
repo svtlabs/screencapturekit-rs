@@ -17,14 +17,12 @@ license.workspace = true
 keywords.workspace = true
 homepage.workspace = true
 
-[features]
-ci = []
 
 [lib]
 path = "./src/lib.rs"
 
 [dependencies]
-screencapturekit-sys = { version="0.1.0", path = "../screencapturekit-sys" }
+screencapturekit-sys = { version = "0.1.0", path = "../screencapturekit-sys" }
 
 [dev-dependencies]
 objc-foundation = "0.1"
