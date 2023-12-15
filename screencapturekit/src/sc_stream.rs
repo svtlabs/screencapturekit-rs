@@ -107,7 +107,6 @@ mod tests {
     }
 
     #[test]
-    #[cfg_attr(feature = "ci", ignore)]
     fn test_audio_output() {
         let mut content = SCShareableContent::current();
         let display = content.displays.pop().unwrap();

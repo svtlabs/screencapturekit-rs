@@ -128,7 +128,6 @@ mod stream_test {
             self.tx.send(sample).unwrap();
         }
     }
-    #[ignore]
     #[test]
     fn test_sc_stream() {
         let display = UnsafeSCShareableContent::get()
