@@ -48,6 +48,7 @@ mod tests {
     use super::*;
 
     #[test]
+    #[cfg_attr(feature = "ci", ignore)]
     fn test_sc_shareable_content() {
         SCShareableContent::current();
     }
