@@ -125,7 +125,8 @@ unsafe impl Message for UnsafeSCShareableContent {}
 
 type CompletionHandlerBlock = RcBlock<(*mut UnsafeSCShareableContent, *mut Object), ()>;
 impl UnsafeSCShareableContent {
-    unsafe fn new_completion_handler() -> (CompletionHandlerBlock, Receiver<Result<Id<Self>, String>>) {
+    unsafe fn new_completion_handler(
+    ) -> (CompletionHandlerBlock, Receiver<Result<Id<Self>, String>>) {
         let (tx, rx) = channel();
         let handler = ConcreteBlock::new(move |sc: *mut Self, error: *mut Object| {
             if error.is_null() {
