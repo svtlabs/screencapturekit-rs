@@ -24,6 +24,15 @@ impl CVPixelBufferRef {
     pub fn unlock_base_address(&self, lock_flags: CVPixelBufferLockFlags) -> CVReturn {
         unsafe { CVPixelBufferUnlockBaseAddress(self, lock_flags) }
     }
+    pub fn get_width(&self) -> SizeT {
+        unsafe { CVPixelBufferGetWidth(self) }
+    }
+    pub fn get_height(&self) -> SizeT {
+        unsafe { CVPixelBufferGetHeight(self) }
+    }
+    pub fn get_bytes_per_row_of_plane(&self, plane_index: SizeT) -> SizeT {
+        unsafe { CVPixelBufferGetBytesPerRowOfPlane(self, plane_index) }
+    }
 }
 
 extern "C" {
@@ -44,4 +53,10 @@ extern "C" {
         pixel_buf: *const CVPixelBufferRef,
         lock_flags: CVPixelBufferLockFlags,
     ) -> CVReturn;
+    fn CVPixelBufferGetWidth(pixel_buf: *const CVPixelBufferRef) -> SizeT;
+    fn CVPixelBufferGetHeight(pixel_buf: *const CVPixelBufferRef) -> SizeT;
+    fn CVPixelBufferGetBytesPerRowOfPlane(
+        pixel_buf: *const CVPixelBufferRef,
+        plane_index: SizeT,
+    ) -> SizeT;
 }
