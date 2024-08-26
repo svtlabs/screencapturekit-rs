@@ -25,10 +25,19 @@ impl CVPixelBuffer {
     pub fn unlock(&self) -> bool {
         self.unsafe_ref.unlock_base_address(0) == 0
     }
-    pub fn get_base_adress(&self) -> *mut c_void {
+    pub fn get_base_address(&self) -> *mut c_void {
         self.unsafe_ref.get_base_address()
     }
-    pub fn get_base_adress_of_plane(&self, plane_index: u64) -> *mut c_void {
+    pub fn get_base_address_of_plane(&self, plane_index: u64) -> *mut c_void {
         self.unsafe_ref.get_base_address_of_plane(plane_index)
+    }
+    pub fn get_bytes_per_row_of_plane(&self, plane_index: u64) -> u64 {
+        self.unsafe_ref.get_bytes_per_row_of_plane(plane_index)
+    }
+    pub fn get_width(&self) -> u64 {
+        self.unsafe_ref.get_width()
+    }
+    pub fn get_height(&self) -> u64 {
+        self.unsafe_ref.get_height()
     }
 }
